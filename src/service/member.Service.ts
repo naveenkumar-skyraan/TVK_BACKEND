@@ -3383,6 +3383,7 @@ export class MemberService {
       let totalMembersDeleted = 0;
 
       for (const item of totalResult) {
+        
         if (item._id === "create") {
           totalMembersAdded = item.count;
         }
