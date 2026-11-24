@@ -1,0 +1,2024 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5067",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter JWT token like: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+  },
+  "paths": {
+    "/member/createMembers": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Male"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "John Doe"
+                },
+                "voterId": {
+                  "type": "string",
+                  "example": "ABC1234567"
+                },
+                "mobileNumber": {
+                  "type": "string",
+                  "example": "9876543210"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@example.com"
+                },
+                "dateOfBirth": {
+                  "type": "number",
+                  "example": 1785926780804
+                },
+                "fatherName": {
+                  "type": "string",
+                  "example": "Robert"
+                },
+                "aadharNo": {
+                  "type": "string",
+                  "example": "123412341234"
+                },
+                "bloodGroup": {
+                  "type": "string",
+                  "example": "O+"
+                },
+                "maritalStatus": {
+                  "type": "string",
+                  "example": "String"
+                },
+                "educationId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "educationName": {
+                  "type": "string",
+                  "example": "B.E"
+                },
+                "workId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "workExpirence": {
+                  "type": "string",
+                  "example": "String"
+                },
+                "workName": {
+                  "type": "string",
+                  "example": "Software Engineer"
+                },
+                "religionId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "castId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "distictId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "assemblyConstituencyId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "panjaythId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "villageId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "wardId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "partNumber": {
+                  "type": "string",
+                  "example": "String"
+                },
+                "boothId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "pincode": {
+                  "type": "number",
+                  "example": 600001
+                },
+                "streetName": {
+                  "type": "string",
+                  "example": "Anna Salai"
+                },
+                "landMark_nearby": {
+                  "type": "string",
+                  "example": "Near Bus Stand"
+                },
+                "doorNumber_buildName": {
+                  "type": "string",
+                  "example": "12A, ABC Apartments"
+                },
+                "addressLine1": {
+                  "type": "string",
+                  "example": "No.12, Anna Salai"
+                },
+                "addressLine2": {
+                  "type": "string",
+                  "example": "Chennai"
+                },
+                "userImage": {
+                  "type": "string",
+                  "example": "image.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getMembers": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "Aradhana"
+                },
+                "cursor": {
+                  "type": "string",
+                  "example": "66a733aec325e4b269ed79f22"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Female"
+                },
+                "fromAge": {
+                  "type": "string",
+                  "example": "18"
+                },
+                "toAge": {
+                  "type": "string",
+                  "example": "60"
+                },
+                "s_delete": {
+                  "type": "number",
+                  "example": 0
+                },
+                "alphabeticalOrder": {
+                  "type": "number",
+                  "example": 0
+                },
+                "inactivId": {
+                  "type": "string",
+                  "example": "ertyuiop"
+                },
+                "fromDate": {
+                  "type": "string",
+                  "example": "2026-08-01"
+                },
+                "toDate": {
+                  "type": "string",
+                  "example": "2026-08-19"
+                },
+                "inactiveFomDate": {
+                  "type": "string",
+                  "example": "2026-08-01"
+                },
+                "inactiveToDate": {
+                  "type": "string",
+                  "example": "2026-08-19"
+                },
+                "updateDate": {
+                  "type": "string",
+                  "example": "2026-08-19"
+                },
+                "inactiveDate": {
+                  "type": "string",
+                  "example": "2026-08-19"
+                },
+                "relegionId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "castId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "educationId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "workId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "constituencyId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "panjaythId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "villageId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "wardId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "boothId": {
+                  "type": "array",
+                  "example": [
+                    "6895f1d2c123456789abcdef",
+                    "6895f1d2c123456789abcde1"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/createEducation": {
+      "post": {
+        "tags": [
+          "Education"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getEducation": {
+      "post": {
+        "tags": [
+          "Education"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "searchKey": {
+                  "type": "string",
+                  "example": "rtyuio"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/createWork": {
+      "post": {
+        "tags": [
+          "Work"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getWork": {
+      "post": {
+        "tags": [
+          "Work"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "searchKey": {
+                  "type": "string",
+                  "example": "rtyuiop"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/createReligion": {
+      "post": {
+        "tags": [
+          "Religion"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getReligion": {
+      "post": {
+        "tags": [
+          "Religion"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "searchKey": {
+                  "type": "string",
+                  "example": "rtyuiopl"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/createCaste": {
+      "post": {
+        "tags": [
+          "Caste"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getCaste": {
+      "post": {
+        "tags": [
+          "Caste"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "searchKey": {
+                  "type": "string",
+                  "example": "ertyuikol"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/createInactive": {
+      "post": {
+        "tags": [
+          "Inactive"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getInactive": {
+      "post": {
+        "tags": [
+          "Inactive"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/markAsInActive": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "inactivId": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                },
+                "otherInactiveReason": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "inactive_date": {
+                  "type": "number",
+                  "example": 123456789
+                },
+                "inactive_description": {
+                  "type": "string",
+                  "example": "String"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getInactiveById": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "Schema.Types.ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/getLast10DaysActivity": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/member/member-activity": {
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "page": {
+                  "type": "number",
+                  "example": 1
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/ward/createWard": {
+      "post": {
+        "tags": [
+          "Ward"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "villageId": {
+                  "type": "string",
+                  "example": "objectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/ward/getAllWard": {
+      "post": {
+        "tags": [
+          "Ward"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "villageId": {
+                  "type": "string",
+                  "example": "RTYUIO"
+                },
+                "cursor": {
+                  "type": "string",
+                  "example": "edrfhjk"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "rtyui"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/booth/createBooth": {
+      "post": {
+        "tags": [
+          "Booth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "wardId": {
+                  "type": "string",
+                  "example": "String"
+                },
+                "boothNumber": {
+                  "type": "string",
+                  "example": "String"
+                },
+                "boothLocation": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "boothName": {
+                  "type": "string",
+                  "example": "String"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/booth/getAllBooth": {
+      "post": {
+        "tags": [
+          "Booth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "wardId": {
+                  "type": "string",
+                  "example": "dfghjkl;"
+                },
+                "cursor": {
+                  "type": "string",
+                  "example": "dfghjkl;"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "ertyuiop"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/createUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userImage",
+            "in": "formData",
+            "type": "file",
+            "required": false
+          },
+          {
+            "name": "mobile",
+            "in": "formData",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "role",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "userRole",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "accountAccessPrivilege",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "accountAccessModule",
+            "in": "formData",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "panjaythIds",
+            "in": "formData",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of Panjayath ObjectIds"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/loginUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "mobile": {
+                  "type": "number",
+                  "example": 9789101866
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Daveram@123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/changePassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "objectId"
+                },
+                "oldPassword": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "newPassword": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/homepageApi": {
+      "post": {
+        "tags": [
+          "homepageApi"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cursor": {
+                  "type": "string",
+                  "example": "dfhjk"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "ERTYUI"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/getUser": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/constituency/createConstituency": {
+      "post": {
+        "tags": [
+          "Constituency"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "districtId": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/constituency/getAllConstituency": {
+      "post": {
+        "tags": [
+          "Constituency"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "districtId": {
+                  "type": "string",
+                  "example": "objectId"
+                },
+                "objectId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/district/createDistrict": {
+      "post": {
+        "tags": [
+          "District"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "s_delete": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/district/getDistrict": {
+      "post": {
+        "tags": [
+          "District"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/panjayth/createPanjayth": {
+      "post": {
+        "tags": [
+          "Panjayth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "constituencyId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/panjayth/getPanjayth": {
+      "post": {
+        "tags": [
+          "Panjayth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "constituencyId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "cursor": {
+                  "type": "string",
+                  "example": "ertyui"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/panjayth/getPanjaythById": {
+      "post": {
+        "tags": [
+          "Panjayth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/panjayth/deletePanjayth": {
+      "post": {
+        "tags": [
+          "Panjayth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/village/createVillage": {
+      "post": {
+        "tags": [
+          "Village"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "panjaythId": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/village/getVillage": {
+      "post": {
+        "tags": [
+          "Village"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "panjaythIds": {
+                  "type": "string",
+                  "example": "ObjectId"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "cursor": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/village/getVillageById": {
+      "post": {
+        "tags": [
+          "Village"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/village/deleteVillage": {
+      "post": {
+        "tags": [
+          "Village"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "ObjectId"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllDistrict": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "chennai"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllConstituency": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "districtId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "chennai"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllPanjayth": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "constituencyId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "chennai"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllVillage": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "panjaythId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "chennai"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllMember": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllWard": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "villageId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllBooth": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "wardId": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "search": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllEducation": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "Engineering"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllWork": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "Teacher"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllReligion": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "Hindu"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllCaste": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "BC"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/downloadCasteTemplate": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "Download the caste CSV upload template",
+        "responses": {
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/admin/bulkUploadCaste": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "Bulk upload caste records",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/admin/getAllInactive": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "reason"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/admin/getAllUsers": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "search": {
+                  "type": "string",
+                  "example": "name"
+                },
+                "role": {
+                  "type": "string",
+                  "example": "Admin"
+                },
+                "limit": {
+                  "type": "number",
+                  "example": 10
+                },
+                "offset": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}
