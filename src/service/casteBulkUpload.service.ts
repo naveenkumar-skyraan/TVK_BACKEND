@@ -87,7 +87,6 @@ const extractUploadRows = (rows: unknown[][]): {
   entries: CasteUploadEntry[];
   totalRows: number;
   skippedBlankRows: number;
-  duplicateRowsSkipped: number;
 } => {
   if (rows.length < 2) {
     throw new Error("The upload file must contain a header row and at least one caste row");
@@ -98,14 +97,13 @@ const extractUploadRows = (rows: unknown[][]): {
   const casteNameIndex = headers.findIndex((header) => ["castename", "caste", "name"].includes(header));
 
   if (referenceIdIndex === -1 || casteNameIndex === -1) {
-    throw new Error("The file must contain referenceId and casteName columns. Download the template and use those column names");
+    throw new Error("The file must contain ID/referenceId and CASTE NAME/casteName columns");
   }
 
-  const entriesByName = new Map<string, CasteUploadEntry>();
+  const entries: CasteUploadEntry[] = [];
   const invalidRows: string[] = [];
   let totalRows = 0;
   let skippedBlankRows = 0;
-  let duplicateRowsSkipped = 0;
 
   for (let index = 1; index < rows.length; index += 1) {
     const row = rows[index] ?? [];
@@ -120,35 +118,18 @@ const extractUploadRows = (rows: unknown[][]): {
     totalRows += 1;
 
     if (!referenceId || !casteName) {
-      invalidRows.push(`Row ${index + 1}: referenceId and casteName are both required`);
+      invalidRows.push(`Row ${index + 1}: ID/referenceId and caste name are both required`);
       continue;
     }
 
     if (referenceId.length > 50) {
-      invalidRows.push(`Row ${index + 1}: referenceId cannot exceed 50 characters`);
+      invalidRows.push(`Row ${index + 1}: ID/referenceId cannot exceed 50 characters`);
       continue;
     }
 
-    if (casteName.length > 150) {
-      invalidRows.push(`Row ${index + 1}: casteName cannot exceed 150 characters`);
-      continue;
-    }
-
-    const normalizedName = normalizeName(casteName);
-    const existingEntry = entriesByName.get(normalizedName);
-
-    if (existingEntry) {
-      if (existingEntry.referenceId === referenceId) {
-        duplicateRowsSkipped += 1;
-      } else {
-        invalidRows.push(`Row ${index + 1}: caste name "${casteName}" is already assigned to a different referenceId in this file`);
-      }
-      continue;
-    }
-
-    entriesByName.set(normalizedName, {
+    entries.push({
       name: casteName,
-      normalizedName,
+      normalizedName: normalizeName(casteName),
       referenceId,
     });
   }
@@ -157,13 +138,12 @@ const extractUploadRows = (rows: unknown[][]): {
     throw new Error(`The file contains ${invalidRows.length} invalid row(s): ${invalidRows.slice(0, 20).join("; ")}`);
   }
 
-  if (!entriesByName.size) throw new Error("No valid caste records were found in the file");
+  if (!entries.length) throw new Error("No valid caste records were found in the file");
 
   return {
-    entries: Array.from(entriesByName.values()),
+    entries,
     totalRows,
     skippedBlankRows,
-    duplicateRowsSkipped,
   };
 };
 
@@ -175,56 +155,22 @@ export class CasteBulkUploadService {
 
       const rows = readRows(buffer, extension);
       const parsed = extractUploadRows(rows);
-      const existingCastes = await CasteSchema.find({})
-        .select("_id name normalizedName referenceId")
-        .lean();
 
-      const existingByName = new Map<string, (typeof existingCastes)[number]>();
-      for (const caste of existingCastes) {
-        const key = caste.normalizedName || normalizeName(caste.name);
-        if (key && !existingByName.has(key)) existingByName.set(key, caste);
-      }
-
-      const operations: any[] = parsed.entries.map((entry) => {
-        const existing = existingByName.get(entry.normalizedName);
-        const update = {
-          $set: {
-            name: entry.name,
-            normalizedName: entry.normalizedName,
-            referenceId: entry.referenceId,
-            s_delete: 0,
-          },
-          $unset: {
-            referenceIds: "",
-          },
-        };
-
-        if (existing?._id) {
-          return {
-            updateOne: {
-              filter: { _id: existing._id },
-              update,
-            },
-          };
-        }
-
-        return {
-          updateOne: {
-            filter: { normalizedName: entry.normalizedName },
-            update,
-            upsert: true,
-          },
-        };
-      });
-
-      const result = await CasteSchema.collection.bulkWrite(operations, { ordered: false });
+      // Every valid input row is inserted as a separate caste record.
+      // Repeated caste names and repeated reference IDs are intentionally allowed.
+      const insertedCastes = await CasteSchema.insertMany(
+        parsed.entries.map((entry) => ({
+          name: entry.name,
+          normalizedName: entry.normalizedName,
+          referenceId: entry.referenceId,
+          s_delete: 0,
+        })),
+      );
 
       return ResponseBuilder.Success(1, "Caste file uploaded successfully", [{
         totalRows: parsed.totalRows,
-        uniqueCastes: parsed.entries.length,
-        inserted: result.upsertedCount,
-        updated: result.matchedCount,
-        duplicateRowsSkipped: parsed.duplicateRowsSkipped,
+        uploadedRows: insertedCastes.length,
+        inserted: insertedCastes.length,
         blankRowsSkipped: parsed.skippedBlankRows,
       }]);
     } catch (error: any) {
