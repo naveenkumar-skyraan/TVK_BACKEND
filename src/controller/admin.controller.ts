@@ -314,15 +314,29 @@ export class AdminController {
         try {
             const {
                 search,
+                searchTerm,
+                cursor,
                 limit = 10,
-                offset = 0
+                offset = 0,
             } = req.body;
 
-            const data = await this.adminService.castList(
-                search,
-                Number(limit),
-                Number(offset)
-            );
+            // Add/Edit Member dropdown uses server-side search + cursor pagination.
+            // The Caste management table continues using its existing offset pagination.
+            const usesCursorPagination =
+                Object.prototype.hasOwnProperty.call(req.body, "searchTerm") ||
+                Object.prototype.hasOwnProperty.call(req.body, "cursor");
+
+            const data = usesCursorPagination
+                ? await this.adminService.castCursorList(
+                    String(searchTerm ?? ""),
+                    cursor ? String(cursor) : undefined,
+                    Number(limit),
+                )
+                : await this.adminService.castList(
+                    search,
+                    Number(limit),
+                    Number(offset),
+                );
 
             return res.status(200).json(data);
 

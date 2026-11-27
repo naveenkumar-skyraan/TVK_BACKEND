@@ -167,7 +167,7 @@ routerAdmin.post(
 
     //#swagger.tags = ['Admin']
 
-    //#swagger.parameters['body'] = {in: 'body',required: false,schema: {search: "BC",limit: 10,offset: 0}}
+    //#swagger.parameters['body'] = {in: 'body',required: false,schema: {search: "BC",searchTerm: "Mannan",limit: 10,offset: 0,cursor: null}}
 
     controllerAdmin.getAllCaste
 );

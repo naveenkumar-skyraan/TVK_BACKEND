@@ -913,6 +913,91 @@ async religionList(search?: string,limit: number = 10,offset: number = 0): Promi
 }
 
 
+async castCursorList(
+    searchTerm: string = "",
+    cursor?: string,
+    limit: number = 10,
+): Promise<ResponseFormate> {
+    try {
+        // Dropdown requests are intentionally capped at 10 records per call.
+        const pageLimit = Math.min(
+            Math.max(Math.trunc(Number(limit) || 10), 1),
+            10,
+        );
+
+        const query: any = {
+            s_delete: 0,
+        };
+
+        const normalizedSearch = String(searchTerm ?? "")
+            .trim()
+            .normalize("NFKC")
+            .replace(/\s+/g, " ");
+
+        if (normalizedSearch) {
+            const escapedSearch = normalizedSearch.replace(
+                /[.*+?^${}()|[\]\\]/g,
+                "\\$&",
+            );
+
+            const normalizedEscapedSearch = normalizedSearch
+                .toLowerCase()
+                .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+            // Search is applied to the complete active caste collection BEFORE pagination.
+            query.$or = [
+                { name: { $regex: escapedSearch, $options: "i" } },
+                { normalizedName: { $regex: normalizedEscapedSearch, $options: "i" } },
+                { referenceId: { $regex: escapedSearch, $options: "i" } },
+            ];
+        }
+
+        if (cursor) {
+            if (!mongoose.Types.ObjectId.isValid(cursor)) {
+                return ResponseBuilder.Failure(0, "Invalid caste cursor", []);
+            }
+
+            query._id = {
+                $gt: new mongoose.Types.ObjectId(cursor),
+            };
+        }
+
+        // Fetch one extra record to determine whether another page exists.
+        // No countDocuments query is issued for dropdown searches.
+        const records = await CasteSchema.find(query)
+            .select("_id name normalizedName referenceId")
+            .sort({ _id: 1 })
+            .limit(pageLimit + 1)
+            .lean();
+
+        const hasMore = records.length > pageLimit;
+        const items = hasMore ? records.slice(0, pageLimit) : records;
+        const nextCursor = hasMore && items.length
+            ? items[items.length - 1]._id.toString()
+            : null;
+
+        return ResponseBuilder.Success(
+            1,
+            items.length ? "The Caste list" : "No Caste Found",
+            [
+                {
+                    limit: pageLimit,
+                    searchTerm: normalizedSearch,
+                    nextCursor,
+                    hasMore,
+                    data: items,
+                },
+            ],
+        );
+    } catch (error: any) {
+        return ResponseBuilder.Failure(
+            0,
+            "Error in Service layer",
+            [error.message],
+        );
+    }
+}
+
 async castList(search?: string,limit: number = 10,offset: number = 0): Promise<ResponseFormate> {
     try {
         limit = Number(limit);
