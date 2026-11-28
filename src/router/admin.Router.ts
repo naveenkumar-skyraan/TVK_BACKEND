@@ -7,6 +7,9 @@ import type { RequestHandler } from "express";
 const routerAdmin = express.Router();
 
 const controllerAdmin = new AdminController();
+
+// test
+
 const authClass = new AuthClass();
 const requireAdmin: RequestHandler = (req, res, next) => {
     if (req.user?.role !== "Admin") {
