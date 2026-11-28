@@ -8,6 +8,7 @@ const routerAdmin = express.Router();
 
 const controllerAdmin = new AdminController();
 
+// test
 
 const authClass = new AuthClass();
 const requireAdmin: RequestHandler = (req, res, next) => {
